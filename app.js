@@ -30,6 +30,7 @@ app.use(express.static('public'));
  *
  */
 
+
 // App Secret can be retrieved from the App Dashboard
 const APP_SECRET = (process.env.MESSENGER_APP_SECRET) ? 
   process.env.MESSENGER_APP_SECRET :
