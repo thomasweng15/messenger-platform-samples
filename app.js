@@ -324,6 +324,7 @@ function receivedMessage(event) {
 
       case 'reminder':
         setReminderAndConfirm(senderID, messageText);
+        break;
 
       default:
         sendTextMessage(senderID, messageText);
