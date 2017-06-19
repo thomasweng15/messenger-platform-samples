@@ -143,6 +143,17 @@ app.get('/authorize', function(req, res) {
   });
 });
 
+app.post('/listener', function(req, res) {
+    var user_id = req.body.user_id;
+    var message = req.body.message;
+
+    console.log("Sending reminder to %s: %s", user_id, message);
+    // sendTextMessage(user_id, message);
+    res.json({
+        "message": "sent!"
+    })
+})
+
 /*
  * Verify that the callback came from Facebook. Using the App Secret from 
  * the App Dashboard, we can verify the signature that is sent with each 
@@ -152,6 +163,10 @@ app.get('/authorize', function(req, res) {
  *
  */
 function verifyRequestSignature(req, res, buf) {
+  if (req.originalUrl == '/listener') {
+    return;
+  }
+
   var signature = req.headers["x-hub-signature"];
 
   if (!signature) {
