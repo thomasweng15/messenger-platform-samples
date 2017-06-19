@@ -16,7 +16,8 @@ const
   crypto = require('crypto'),
   express = require('express'),
   https = require('https'),  
-  request = require('request');
+  request = require('request'),
+  axios = require('axios');
 
 var app = express();
 app.set('port', process.env.PORT || 5000);
@@ -321,6 +322,9 @@ function receivedMessage(event) {
         sendAccountLinking(senderID);
         break;
 
+      case 'reminder':
+        setReminderAndConfirm(senderId, messageText);
+
       default:
         sendTextMessage(senderID, messageText);
     }
@@ -544,6 +548,22 @@ function sendTextMessage(recipientId, messageText) {
   };
 
   callSendAPI(messageData);
+}
+
+function setReminderAndConfirm(recipientId, messageText) {
+  axios.post('https://reminderapi.herokuapp.com/api/reminders', {
+    user_id: recipientId,
+    message: "Wake up sheeple!",
+    next_reminder: new Date().getTime().toString(),
+    frequency: "86400000"
+  })
+  .then(function (response) {
+    sendTextMessage(recipientId, "Set reminder succeeded.");
+  })
+  .catch(function (err) {
+      console.log(err);
+      sendTextMessage(recipientId, "Set reminder failed.");
+  });
 }
 
 /*
