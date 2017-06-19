@@ -149,6 +149,7 @@ app.post('/listener', function(req, res) {
 
     console.log("Sending reminder to %s: %s", user_id, message);
     sendTextMessage(user_id, message);
+    res.send();
 });
 
 /*
