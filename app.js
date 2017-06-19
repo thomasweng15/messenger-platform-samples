@@ -148,11 +148,8 @@ app.post('/listener', function(req, res) {
     var message = req.body.message;
 
     console.log("Sending reminder to %s: %s", user_id, message);
-    // sendTextMessage(user_id, message);
-    res.json({
-        "message": "sent!"
-    })
-})
+    sendTextMessage(user_id, message);
+});
 
 /*
  * Verify that the callback came from Facebook. Using the App Secret from 
