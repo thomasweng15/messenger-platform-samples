@@ -18,6 +18,14 @@ function sendTextMessage(recipientId, messageText) {
   api.callSendAPI(messageData);
 }
 
+const setReminderMessage = {
+  type: 'web_url',
+  title: 'Set Reminder',
+  url: `${SERVER_URL}/`,
+  webview_height_ratio: 'tall',
+  messenger_extensions: true,
+}
+
 /*
  * Send a button message using the Send API.
  *
@@ -33,11 +41,7 @@ function sendButtonMessage(recipientId) {
         payload: {
           template_type: "button",
           text: "Set a reminder",
-          buttons:[{
-            type: "postback",
-            title: "Set a reminder",
-            payload: "DEVELOPER_DEFINED_PAYLOAD"
-          }]
+          buttons:[setReminderMessage]
         }
       }
     }
