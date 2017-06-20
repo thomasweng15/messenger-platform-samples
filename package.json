@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "lint": "jshint --exclude node_modules .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node_modules/webpack/bin/webpack.js --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -16,8 +17,11 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.16.2",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.0.0",
     "body-parser": "^1.15.0",
     "config": "^1.20.4",
+    "css-loader": "^0.28.4",
     "ejs": "^2.4.2",
     "express": "^4.13.4",
     "request": "^2.72.0"
@@ -25,5 +29,7 @@
   "engines": {
     "node": "~4.1.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "webpack": "^3.0.0"
+  }
 }
