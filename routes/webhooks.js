@@ -4,6 +4,7 @@ const
   bodyParser = require('body-parser'),
   express = require('express'),
   config = require('config'),
+  crypto = require('crypto'),
   receiveApi = require('../messenger-api-helpers/receive'),
   router = express.Router();
 

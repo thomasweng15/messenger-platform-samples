@@ -12,7 +12,6 @@
 
 const 
   config = require('config'),
-  crypto = require('crypto'),
   express = require('express'),
   https = require('https'),
   index = require('./routes/index'),
