@@ -2,6 +2,13 @@ const
     axios = require('axios'),
     sendApi = require('./send');
 
+function receivedReminderToSend(data) {
+    const user_id = data.user_id;
+    const message = data.message;
+    console.log("Sending reminder to %s: %s", user_id, message);
+    sendApi.sendTextMessage(user_id, message);
+}
+
 /*
  * Message Event
  *
@@ -57,7 +64,7 @@ function receivedMessage(event) {
     // the text we received.
     switch (messageText) {
       case 'reminder':
-        setReminderAndConfirm(senderID, messageText);
+        sendApi.sendButtonMessage(senderId);      
         break;
 
       default:
@@ -69,10 +76,36 @@ function receivedMessage(event) {
 }
 
 /*
+ * Postback Event
+ *
+ * This event is called when a postback is tapped on a Structured Message. 
+ * https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback-received
+ * 
+ */
+function receivedPostback(event) {
+  var senderID = event.sender.id;
+  var recipientID = event.recipient.id;
+  var timeOfPostback = event.timestamp;
+
+  // The 'payload' param is a developer-defined field which is set in a postback 
+  // button for Structured Messages. 
+  var payload = event.postback.payload;
+
+  console.log("Received postback for user %d and page %d with payload '%s' " + 
+    "at %d", senderID, recipientID, payload, timeOfPostback);
+
+  // When a postback is called, we'll send a message back to the sender to 
+  // let them know it was successful
+  sendTextMessage(senderID, "Postback called");
+
+  setReminderAndConfirm(senderID);
+}
+
+/*
  * Send a reminder message using the Send API.
  *
  */
-function setReminderAndConfirm(recipientId, messageText) {
+function setReminderAndConfirm(recipientId) {
   axios.post('https://reminderapi.herokuapp.com/api/reminders', {
     user_id: recipientId,
     message: "Wake up sheeple!",
@@ -86,13 +119,6 @@ function setReminderAndConfirm(recipientId, messageText) {
       console.log(err);
       sendApi.sendTextMessage(recipientId, "Set reminder failed.");
   });
-}
-
-function receivedReminderToSend(data) {
-    const user_id = data.user_id;
-    const message = data.message;
-    console.log("Sending reminder to %s: %s", user_id, message);
-    sendApi.sendTextMessage(user_id, message);
 }
 
 module.exports = {
