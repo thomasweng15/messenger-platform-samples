@@ -64,7 +64,7 @@ function receivedMessage(event) {
     // the text we received.
     switch (messageText) {
       case 'reminder':
-        sendApi.sendButtonMessage(senderId);      
+        sendApi.sendButtonMessage(senderID);      
         break;
 
       default:
