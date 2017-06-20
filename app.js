@@ -16,7 +16,8 @@ const
   https = require('https'),
   index = require('./routes/index'),
   webhooks = require('./routes/webhooks'),
-  listener = require('./routes/listener');
+  listener = require('./routes/listener'),
+  ThreadSetup = require('./messenger-api-helpers/thread-setup');
 
 var app = express();
 app.set('port', process.env.PORT || 5000);
@@ -59,6 +60,8 @@ if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
   console.error("Missing config values");
   process.exit(1);
 }
+
+ThreadSetup.domainWhitelisting();
 
 // Start server
 // Webhooks must be available via SSL with a certificate signed by a valid 

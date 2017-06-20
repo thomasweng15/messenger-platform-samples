@@ -21,7 +21,7 @@ function sendTextMessage(recipientId, messageText) {
     }
   };
 
-  api.callSendAPI(messageData);
+  api.callMessagesAPI(messageData);
 }
 
 const setReminderMessage = {
@@ -53,7 +53,7 @@ function sendButtonMessage(recipientId) {
     }
   };  
 
-  api.callSendAPI(messageData);
+  api.callMessagesAPI(messageData);
 }
 
 module.exports = {
