@@ -1,7 +1,7 @@
 {
-  "name": "messenger-get-started",
+  "name": "reminder-bot",
   "version": "1.0.0",
-  "description": "Get started example for Messenger Platform",
+  "description": "Bot to send reminders",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fbsamples/messenger-platform-samples.git"
+    "url": "https://github.com/thomasweng15/reminder-bot"
   },
-  "author": "Facebook",
+  "author": "Thomas Weng",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.16.2",
@@ -24,5 +24,6 @@
   },
   "engines": {
     "node": "~4.1.2"
-  }
+  },
+  "devDependencies": {}
 }
