@@ -8,7 +8,7 @@
  */
 
 require('babel-register')({
-  presets: ['latest', 'react'],
+  presets: ['latest', 'react', 'stage-2'],
 });
 
 // ===== MODULES ===============================================================
