@@ -15,6 +15,7 @@ const
   crypto = require('crypto'),
   express = require('express'),
   https = require('https'),
+  index = require('./routes/index'),
   webhooks = require('./routes/webhooks'),
   listener = require('./routes/listener');
 
@@ -23,6 +24,7 @@ app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+app.use('/', index);
 app.use('/webhook', webhooks);
 app.use('/listener', listener);
 
