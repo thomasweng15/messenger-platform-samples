@@ -53,7 +53,7 @@ function sendButtonMessage(recipientId) {
     }
   };  
 
-  callSendAPI(messageData);
+  api.callSendAPI(messageData);
 }
 
 module.exports = {
