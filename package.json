@@ -4,7 +4,7 @@
   "description": "Bot to send reminders",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "babel-node app.js",
     "lint": "jshint --exclude node_modules .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node_modules/webpack/bin/webpack.js --config webpack.config.js"
@@ -34,6 +34,8 @@
     "node": "~4.1.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "webpack": "^3.0.0"
   }
 }
