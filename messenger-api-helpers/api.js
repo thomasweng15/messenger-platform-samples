@@ -1,6 +1,6 @@
 
 const 
-  config = require('config');
+  config = require('config'),
   request = require('request');
 
 
