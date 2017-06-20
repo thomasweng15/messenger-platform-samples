@@ -1,4 +1,10 @@
-const api = require('./api');
+const 
+  api = require('./api'),
+  config = require('config');
+
+const SERVER_URL = (process.env.SERVER_URL) ?
+  (process.env.SERVER_URL) :
+  config.get('serverURL');
 
 /*
  * Send a text message using the Send API.
