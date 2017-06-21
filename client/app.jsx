@@ -45,6 +45,7 @@ class App extends React.Component {
       alert(response);
       if (response.ok) {
         console.log('Data successfully updated on the server!');
+        WebviewControls.close();
         return;
       }
 
@@ -52,11 +53,13 @@ class App extends React.Component {
         response.status,
         `Unable to save user data for User ${this.props.viewerId}'`
       );
-    }).catch((err) => {
+    })
+    .catch((err) => {
       alert('Error pushing data', err);
-    }).then(() => {
       WebviewControls.close();
     });
+
+    alert("Reached bottom of pushData");
   }
 
   render() {

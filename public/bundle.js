@@ -26463,7 +26463,7 @@ var App = function (_React$Component) {
         return;
       }
 
-      console.log("Pushing reminder");
+      alert("Pushing reminder");
       var date = new Date(this.state.time);
       _axios2.default.post('http://reminderapi.herokuapp.com/api/reminders', {
         user_id: this.props.viewerId,
@@ -26474,15 +26474,17 @@ var App = function (_React$Component) {
         alert(response);
         if (response.ok) {
           console.log('Data successfully updated on the server!');
+          _webviewControls2.default.close();
           return;
         }
 
         console.error(response.status, 'Unable to save user data for User ' + _this2.props.viewerId + '\'');
       }).catch(function (err) {
         alert('Error pushing data', err);
-      }).then(function () {
         _webviewControls2.default.close();
       });
+
+      alert("Reached bottom of pushData");
     }
   }, {
     key: 'render',
