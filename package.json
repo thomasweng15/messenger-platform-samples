@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node ./bin/www",
+    "dev": "nodemon app",
     "lint": "jshint --exclude node_modules .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node_modules/webpack/bin/webpack.js --config webpack.config.js"
@@ -30,13 +31,16 @@
     "express": "^4.13.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "request": "^2.72.0"
+    "react-weui": "^1.0.3",
+    "request": "^2.72.0",
+    "weui": "^1.1.2"
   },
   "engines": {
     "node": "~4.1.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "nodemon": "^1.11.0",
     "webpack": "^3.0.0"
   }
 }
