@@ -35,7 +35,7 @@ class App extends React.Component {
     let date = new Date(this.state.time);
     axios.post('https://reminderapi.herokuapp.com/api/reminders', {
         user_id: this.props.viewerId,
-        next_reminder: date.setHours(date.getHours() + 1).toISOString(),
+        next_reminder: date.toISOString(),
         message: this.state.message,
         frequency: '86400000'
     })

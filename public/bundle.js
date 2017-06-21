@@ -26466,7 +26466,7 @@ var App = function (_React$Component) {
       var date = new Date(this.state.time);
       _axios2.default.post('https://reminderapi.herokuapp.com/api/reminders', {
         user_id: this.props.viewerId,
-        next_reminder: date.setHours(date.getHours() + 1).toISOString(),
+        next_reminder: date.toISOString(),
         message: this.state.message,
         frequency: '86400000'
       }).then(function (response) {
