@@ -19,8 +19,9 @@ class App extends React.Component {
     super(props);
 
     const now = new Date();
+    const hours = now.getHours() < 10 ? '0' + now.getHours() : now.getHours().toString();
     this.state = {
-      time: `${now.getHours()}:${now.getMinutes()}`,
+      time: `${hours}:${now.getMinutes()}`,
       message: null
     }
   }
@@ -32,7 +33,10 @@ class App extends React.Component {
     }
 
     console.log("Pushing reminder");
-    let date = new Date(this.state.time);
+    let date = new Date();
+    const pair = this.state.time.split(':');
+    date.setHours(pair[0]);
+    date.setMinutes(pair[1]);
     axios.post('https://reminderapi.herokuapp.com/api/reminders', {
         user_id: this.props.viewerId,
         next_reminder: date.toISOString(),
@@ -40,7 +44,7 @@ class App extends React.Component {
         frequency: '86400000'
     })
     .then((response) => {
-      if (response.ok) {
+      if (response.status == 200) {
         console.log('Data successfully updated on the server!');
         WebviewControls.close();
         return;

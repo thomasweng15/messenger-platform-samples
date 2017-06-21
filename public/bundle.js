@@ -26445,8 +26445,9 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     var now = new Date();
+    var hours = now.getHours() < 10 ? '0' + now.getHours() : now.getHours().toString();
     _this.state = {
-      time: now.getHours() + ':' + now.getMinutes(),
+      time: hours + ':' + now.getMinutes(),
       message: null
     };
     return _this;
@@ -26463,14 +26464,17 @@ var App = function (_React$Component) {
       }
 
       console.log("Pushing reminder");
-      var date = new Date(this.state.time);
+      var date = new Date();
+      var pair = this.state.time.split(':');
+      date.setHours(pair[0]);
+      date.setMinutes(pair[1]);
       _axios2.default.post('https://reminderapi.herokuapp.com/api/reminders', {
         user_id: this.props.viewerId,
         next_reminder: date.toISOString(),
         message: this.state.message,
         frequency: '86400000'
       }).then(function (response) {
-        if (response.ok) {
+        if (response.status == 200) {
           console.log('Data successfully updated on the server!');
           _webviewControls2.default.close();
           return;
