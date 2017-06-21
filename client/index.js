@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 
 import App from './app';
 
+import 'weui';
+import 'react-weui/lib/react-weui.min.css';
+
 /*
  * Function for attaching the application when MessengerExtensions has loaded
  */
