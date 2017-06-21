@@ -64,7 +64,7 @@ if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
 
 ThreadSetup.domainWhitelisting();
 
-var ping = new cron.CronJob('0,30 * * * *', function() { 
+var ping = new cron.CronJob('0,15,30,45 * * * *', function() { 
     axios.get('https://reminderapi.herokuapp.com/api/reminders')
         .then(function (response) {
             console.log('api ping error?', response.error);
