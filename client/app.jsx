@@ -33,7 +33,7 @@ class App extends React.Component {
       return;
     }
 
-    console.log("Pushing reminder");
+    alert("Pushing reminder");
     let date = new Date(this.state.time);
     axios.post('http://reminderapi.herokuapp.com/api/reminders', {
         user_id: this.props.viewerId,
@@ -41,7 +41,7 @@ class App extends React.Component {
         message: this.state.message,
         frequency: '86400000'
     })
-    .then(response => {
+    .then((response) => {
       alert(response);
       if (response.ok) {
         console.log('Data successfully updated on the server!');
