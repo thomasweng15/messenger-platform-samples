@@ -10,19 +10,13 @@ import 'react-weui/lib/react-weui.min.css';
 /*
  * Function for attaching the application when MessengerExtensions has loaded
  */
-window.attachApp = (viewerId, listId, socketAddress, threadType) => {
+window.attachApp = (viewerId) => {
   const apiUri = `https://${window.location.hostname}`;
   let app;
   if (viewerId) {
     app = (
       // The main show
-      <App
-        viewerId={viewerId}
-        listId={listId}
-        apiUri={apiUri}
-        socketAddress={socketAddress}
-        threadType={threadType}
-      />
+      <App viewerId={viewerId} />
     );
   } else {
     /**

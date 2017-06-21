@@ -11,17 +11,13 @@
     <script src="/bundle.js"></script>
     <script>
     window.extAsyncInit = function() {
-        MessengerExtensions.getContext(
-          '1967197973496031',
-          function success(context) {
-            window.attachApp(
-              context.psid,
-              null,
-              null,
-              context.thread_type);
-          }, function error(err) {
-            window.attachApp();
-          });
+      alert("init")
+        MessengerExtensions.getUserID(function success(uids) {
+         window.attachApp(uids.psid);
+       }, function error(err) {
+         alert(err);
+         window.attachApp(null);
+       });
       };
     (function(d, s, id){
       var js, fjs = d.getElementsByTagName(s)[0];

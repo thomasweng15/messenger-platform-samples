@@ -13763,19 +13763,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /*
  * Function for attaching the application when MessengerExtensions has loaded
  */
-window.attachApp = function (viewerId, listId, socketAddress, threadType) {
+window.attachApp = function (viewerId) {
   var apiUri = 'https://' + window.location.hostname;
   var app = void 0;
   if (viewerId) {
     app =
     // The main show
-    _react2.default.createElement(_app2.default, {
-      viewerId: viewerId,
-      listId: listId,
-      apiUri: apiUri,
-      socketAddress: socketAddress,
-      threadType: threadType
-    });
+    _react2.default.createElement(_app2.default, { viewerId: viewerId });
   } else {
     /**
      * MessengerExtensions are only available on iOS and Android,
@@ -26463,6 +26457,7 @@ var App = function (_React$Component) {
     value: function pushData() {
       var _this2 = this;
 
+      alert(this.props.viewerId);
       if (this.props.viewerId == null) {
         console.log('No user id present to set reminder');
         return;
@@ -26476,6 +26471,7 @@ var App = function (_React$Component) {
         message: this.state.message,
         frequency: '86400000'
       }).then(function (response) {
+        alert(response);
         if (response.ok) {
           console.log('Data successfully updated on the server!');
           return;
