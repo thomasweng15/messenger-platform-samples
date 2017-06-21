@@ -27,6 +27,7 @@ class App extends React.Component {
   }
 
   pushData() {
+    alert("viewerId", this.props.viewerId)
     if (this.props.viewerId == null) {
       console.log('No user id present to set reminder');
       return;
@@ -41,6 +42,7 @@ class App extends React.Component {
         frequency: '86400000'
     })
     .then(response => {
+      alert(response);
       if (response.ok) {
         console.log('Data successfully updated on the server!');
         return;

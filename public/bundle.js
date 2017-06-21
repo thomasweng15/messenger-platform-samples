@@ -13760,8 +13760,6 @@ __webpack_require__(426);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(_app2.default, null), document.getElementById('content'));
-
 /*
  * Function for attaching the application when MessengerExtensions has loaded
  */
@@ -26465,6 +26463,7 @@ var App = function (_React$Component) {
     value: function pushData() {
       var _this2 = this;
 
+      alert("viewerId", this.props.viewerId);
       if (this.props.viewerId == null) {
         console.log('No user id present to set reminder');
         return;
@@ -26478,6 +26477,7 @@ var App = function (_React$Component) {
         message: this.state.message,
         frequency: '86400000'
       }).then(function (response) {
+        alert(response);
         if (response.ok) {
           console.log('Data successfully updated on the server!');
           return;
