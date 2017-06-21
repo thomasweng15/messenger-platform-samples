@@ -26457,21 +26457,19 @@ var App = function (_React$Component) {
     value: function pushData() {
       var _this2 = this;
 
-      alert(this.props.viewerId);
       if (this.props.viewerId == null) {
         console.log('No user id present to set reminder');
         return;
       }
 
-      alert("Pushing reminder");
+      console.log("Pushing reminder");
       var date = new Date(this.state.time);
       _axios2.default.post('https://reminderapi.herokuapp.com/api/reminders', {
         user_id: this.props.viewerId,
-        next_reminder: date.setHours(date.getHours() + 1),
+        next_reminder: date.setHours(date.getHours() + 1).toISOString(),
         message: this.state.message,
         frequency: '86400000'
       }).then(function (response) {
-        alert(response);
         if (response.ok) {
           console.log('Data successfully updated on the server!');
           _webviewControls2.default.close();
@@ -26480,11 +26478,9 @@ var App = function (_React$Component) {
 
         console.error(response.status, 'Unable to save user data for User ' + _this2.props.viewerId + '\'');
       }).catch(function (err) {
-        alert('Error pushing data', err);
+        console.error('Error pushing data', err);
         _webviewControls2.default.close();
       });
-
-      alert("Reached bottom of pushData");
     }
   }, {
     key: 'render',

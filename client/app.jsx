@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   Button,
@@ -27,22 +26,20 @@ class App extends React.Component {
   }
 
   pushData() {
-    alert(this.props.viewerId);
     if (this.props.viewerId == null) {
       console.log('No user id present to set reminder');
       return;
     }
 
-    alert("Pushing reminder");
+    console.log("Pushing reminder");
     let date = new Date(this.state.time);
     axios.post('https://reminderapi.herokuapp.com/api/reminders', {
         user_id: this.props.viewerId,
-        next_reminder: date.setHours(date.getHours() + 1),
+        next_reminder: date.setHours(date.getHours() + 1).toISOString(),
         message: this.state.message,
         frequency: '86400000'
     })
     .then((response) => {
-      alert(response);
       if (response.ok) {
         console.log('Data successfully updated on the server!');
         WebviewControls.close();
@@ -55,11 +52,9 @@ class App extends React.Component {
       );
     })
     .catch((err) => {
-      alert('Error pushing data', err);
+      console.error('Error pushing data', err);
       WebviewControls.close();
     });
-
-    alert("Reached bottom of pushData");
   }
 
   render() {

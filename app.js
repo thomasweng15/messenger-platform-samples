@@ -17,6 +17,7 @@ const
   index = require('./routes/index'),
   webhooks = require('./routes/webhooks'),
   listener = require('./routes/listener'),
+  cron = require('cron'),
   ThreadSetup = require('./messenger-api-helpers/thread-setup');
 
 var app = express();
@@ -62,6 +63,13 @@ if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
 }
 
 ThreadSetup.domainWhitelisting();
+
+var ping = new cron.CronJob('0,30 * * * *', function() { 
+    axios.get('https://reminderapi.herokuapp.com/api/reminders')
+        .then(function (response) {
+            console.log('api ping error?', response.error);
+        });
+}, null, true);
 
 // Start server
 // Webhooks must be available via SSL with a certificate signed by a valid 
