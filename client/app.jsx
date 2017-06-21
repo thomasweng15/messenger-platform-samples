@@ -52,7 +52,9 @@ class App extends React.Component {
         response.status,
         `Unable to save user data for User ${this.props.viewerId}'`
       );
-    }).catch((err) => console.error('Error pushing data', err)).then(() => {
+    }).catch((err) => {
+      alert('Error pushing data', err);
+    }).then(() => {
       WebviewControls.close();
     });
   }

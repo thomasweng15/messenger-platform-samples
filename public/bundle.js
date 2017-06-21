@@ -26479,7 +26479,7 @@ var App = function (_React$Component) {
 
         console.error(response.status, 'Unable to save user data for User ' + _this2.props.viewerId + '\'');
       }).catch(function (err) {
-        return console.error('Error pushing data', err);
+        alert('Error pushing data', err);
       }).then(function () {
         _webviewControls2.default.close();
       });
