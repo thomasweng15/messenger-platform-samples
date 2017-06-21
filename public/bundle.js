@@ -26465,7 +26465,7 @@ var App = function (_React$Component) {
 
       alert("Pushing reminder");
       var date = new Date(this.state.time);
-      _axios2.default.post('http://reminderapi.herokuapp.com/api/reminders', {
+      _axios2.default.post('https://reminderapi.herokuapp.com/api/reminders', {
         user_id: this.props.viewerId,
         next_reminder: date.setHours(date.getHours() + 1),
         message: this.state.message,
